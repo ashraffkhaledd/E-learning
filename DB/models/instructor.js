@@ -12,8 +12,7 @@ const Instructor = (sequelize) => {
       type: DataTypes.UUID,
       allowNull: false,
       unique: {
-        arg: true,
-        msg: 'UUID is already taken.',
+        msg: 'UUID is already taken.'
       },
     },
     firstName: {
