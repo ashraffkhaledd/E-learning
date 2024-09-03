@@ -1,18 +1,17 @@
 import { Model, DataTypes } from "sequelize"
 
-
-const Course = (sequelize) => {
-    class Course extends Model {
+const CourseChapterContent = (sequelize) => {
+    class CourseChapterContent extends Model {
         static associate(models) {
-            Course.belongsTo(models.Instructor, {
-                foreignKey: "instructorId",
-                as: "instructor",
+            CourseChapterContent.belongsTo(models.ChapterCourse, {
+                foreignKey: "courseChapterId",
+                as: "courseChapter",
                 onDelete: "CASCADE",
                 onUpdate: "CASCADE",
             })
         }
     }
-    Course.init({
+    CourseChapterContent.init({
         uuid: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -21,35 +20,27 @@ const Course = (sequelize) => {
                 msg: 'UUID is already taken.'
             }
         },
-        courseTitle: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        courseBrief: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        numOfChapters: {
+        courseChapterId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        instructorId: {
+        num_of_reading: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        courseFee: {
-            type: DataTypes.DOUBLE,
-            allowNull: false
-        },
-        languageId: {
+        num_of_video: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        num_of_assignment: {
+            type: DataTypes.INTEGER,
+            allowNullL: false
         }
     }, {
         sequelize,
-        modelName: "Course"
-    });
-    return Course
+        modename: "CourseChapterContent"
+    })
+    return CourseChapterContent
 }
 
-export default Course
+export default CourseChapterContent
